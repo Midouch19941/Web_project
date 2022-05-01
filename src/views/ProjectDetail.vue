@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { projectMetaData } from "@/components/projects/projectMeta";
 const data = ref(projectMetaData)
 
@@ -11,18 +11,12 @@ const props = defineProps({
   id: String,
 })
 
-// const currentProjectIndex = projectMetaData.findIndex( project => project.id === props.id)
-const currentProjectIndex = ref(null)
+const currentProjectIndex = computed(() => (projectMetaData.findIndex( project => project.id === props.id)))
+const prevProjectId = computed(() => (data.value[currentProjectIndex.value-1]?.id))
+const nextProjectId = computed(() => (data.value[currentProjectIndex.value+1]?.id))
+// console.log(prevProjectId.value, nextProjectId.value)
 
-currentProjectIndex.value = projectMetaData.findIndex( project => project.id === props.id)
-
-// console.log(projectMetaData.length)
-// console.log(data.value.length)
-const prevProjectId = (currentProjectIndex.value > 0 ) ? data.value[currentProjectIndex.value-1].id : 'null'
-const nextProjectId = (currentProjectIndex.value < data.value.length - 1 ) ? data.value[currentProjectIndex.value+1].id : 'null'
-console.log(prevProjectId, nextProjectId)
-
-const items = ref([
+const items = computed(() => [
   {
     text: 'Home',
     disabled: false,
@@ -49,7 +43,16 @@ const items = ref([
   rounded="0"
   elevation="0"
   >
-    <v-container>
+    <v-container
+    align="center"
+    justify="center"
+    height="400"
+    >
+      <!-- <div 
+      class="coverImg"
+      :style="{backgroundImage: 'url(' + coverImg ?? 'https://cdn.vuetifyjs.com/images/parallax/material.jpg' +')'}"
+      ></div> -->
+
       <v-parallax 
       :src="coverImg || 'https://cdn.vuetifyjs.com/images/parallax/material.jpg'"
       height="400"
@@ -110,17 +113,23 @@ const items = ref([
   flat
   >
     <v-card-actions class="justify-center">
-      <router-link v-if="prevProjectId !== 'null'" :to="`/project/${prevProjectId}`" class="text-decoration-none">
+      <router-link 
+      :to="`/project/${prevProjectId}`" 
+      class="text-decoration-none"
+      custom
+      v-slot="{ navigate }"
+      >
         <v-btn
-        :disabled=" prevProjectId == 'null' " 
+        :disabled=" !prevProjectId " 
         class="text-grey-darken-4"
+        @click="navigate"
         >
           <v-icon
             large
           >
             mdi-chevron-left
           </v-icon>
-          prev - {{prevProjectId}}
+          prev - {{prevProjectId ?? "No Project"}}
         </v-btn>
       </router-link>
       <v-icon
@@ -129,12 +138,18 @@ const items = ref([
       >
         mdi-circle-small
       </v-icon>
-      <router-link v-if="nextProjectId !== 'null'" :to="`/project/${nextProjectId}`" class="text-decoration-none">
+      <router-link 
+      :to="`/project/${nextProjectId}`" 
+      class="text-decoration-none"
+      custom
+      v-slot="{ navigate }"
+      >
         <v-btn 
-        :disabled=" nextProjectId == 'null' "
+        :disabled=" !nextProjectId "
         class="text-grey-darken-4"
+        @click=" navigate "
         >
-          {{nextProjectId}} - next
+          {{nextProjectId  ?? "No Project"}} - next
           <v-icon
             large
           >
@@ -148,5 +163,9 @@ const items = ref([
 </template>
 
 <style lang="scss" scoped>
-
+.coverImg{
+  width: 80%;
+  height: 400px;
+  background-size: cover;
+}
 </style>
