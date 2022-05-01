@@ -107,6 +107,13 @@ const data = ref(projectMetaData)
   position: absolute;
 }
 
+
+@media only screen and (max-width: 960px){
+    .myavatar{
+    animation: selfie_move_md 4s infinite ease-in-out;
+  }
+}
+
 @media only screen and (max-width: 600px){
 
   .avatarDiv{
@@ -128,19 +135,28 @@ const data = ref(projectMetaData)
 
 @keyframes selfie_move{
   0%, 100% {
-    bottom: 63%;
+    top: 70px;
   }
   50% {
-    bottom: 65%;
+    top: 100px;
+  }
+}
+
+@keyframes selfie_move_md{
+  0%, 100% {
+    top: 250px;
+  }
+  50% {
+    top: 280px;
   }
 }
 
 @keyframes selfie_move_sm{
   0%, 100% {
-    bottom: 57%;
+    top: 400px;
   }
   50% {
-    bottom: 59%;
+    top: 430px;
   }
 }
 
