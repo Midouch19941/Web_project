@@ -4,33 +4,36 @@ import ProjectCard from "@/components/ProjectCard.vue";
 import { ref } from 'vue'
 // const avatarPath = ref('@/assets/avatar-2.png')
 
-const data = ref([
-  {
-    projectIcon: 'https://carolyn-yu.com/images/reddotlogo.png',
-    projectTitle: 'EyeBus',
-    projectDescription: 'A Bus Reservation Service for People with Visual Impairments in Taipei.',
-    img: 'https://carolyn-yu.com/images/eyebusCover.png',
-    tags: ['UX','Mobile','Accessibility','Usability Testing','Sketch','Xcode'],
-    themeColor: '#F1EFED',
-  },
-  {
-    projectIcon: 'https://carolyn-yu.com/images/chi2020logo.png',
-    projectTitle: 'WalkingVibe',
-    projectDescription: 'Reducing Virtual Reality Sickness and Improving Realism while Walking in VR using Unobtrusive Head-mounted Vibrotactile Feedback.',
-    img: 'https://carolyn-yu.com/images/walkingvibeCover.png',
-    tags: ['UX','Virtual Reality (VR)','Prototyping','C#','Arduino'],
-    themeColor: '#E5ECF7',
-  }
-])
+import { projectMetaData } from "@/components/projects/projectMeta";
+const data = ref(projectMetaData)
+
+// const data = ref([
+//   {
+//     projectIcon: 'https://carolyn-yu.com/images/reddotlogo.png',
+//     projectTitle: 'EyeBus',
+//     projectDescription: 'A Bus Reservation Service for People with Visual Impairments in Taipei.',
+//     img: 'https://carolyn-yu.com/images/eyebusCover.png',
+//     tags: ['UX','Mobile','Accessibility','Usability Testing','Sketch','Xcode'],
+//     themeColor: '#F1EFED',
+//   },
+//   {
+//     projectIcon: 'https://carolyn-yu.com/images/chi2020logo.png',
+//     projectTitle: 'WalkingVibe',
+//     projectDescription: 'Reducing Virtual Reality Sickness and Improving Realism while Walking in VR using Unobtrusive Head-mounted Vibrotactile Feedback.',
+//     img: 'https://carolyn-yu.com/images/walkingvibeCover.png',
+//     tags: ['UX','Virtual Reality (VR)','Prototyping','C#','Arduino'],
+//     themeColor: '#E5ECF7',
+//   }
+// ])
 
 </script>
 
 <template>
 <div class="bg-grey-lighten-4">
-  <v-container class="pa-md-10 pa-sm-2" >
+  <v-container class="pa-md-10 pa-sm-2">
     <v-row align="center" justify="center">  
       <v-col class="pa-10" cols="12" md="6">
-        <h1 class="display-2 font-weight-bold mb-3 text-h3 text-grey-darken-3">
+        <h1 class="font-weight-bold mb-3 text-h3 text-grey-darken-3">
           👋🏻 Hi, I am Carolyn Yu.
         </h1>
         <br>
@@ -63,15 +66,18 @@ const data = ref([
       </v-col>
     </v-row>
     <v-row class="pa-10">
-      <v-col cols="12" v-for="(project, id) in data" :key="id">
-        <ProjectCard class="ma-2" 
-        :projectIcon="project.projectIcon"
-        :projectTitle="project.projectTitle"
-        :projectDescription="project.projectDescription"
-        :img="project.img"
-        :tags="project.tags"
-        :themeColor="project.themeColor"
-        />
+      <v-col cols="12" v-for="(project, id) in data" :key="id" class="projectCard">
+         <router-link :to="`/project/${project.id}`" class="text-decoration-none">
+          <ProjectCard class="ma-2" 
+          :projectIcon="project.projectIcon"
+          :projectTitle="project.projectTitle"
+          :projectDescription="project.projectDescription"
+          :preImg="project.preImg"
+          :tags="project.tags"
+          :themeColor="project.themeColor"
+          :prevProjectId="project.themeColor"
+          />
+        </router-link>
       </v-col>
 
       <!-- <v-col cols="12">
@@ -143,4 +149,10 @@ const data = ref([
   border: 1px solid #444;
   margin-left: 0px;
 }
+
+.projectCard:hover{
+  transform: scale(1.01);
+  transition: transform 0.2s ease-in-out;
+}
+
 </style>

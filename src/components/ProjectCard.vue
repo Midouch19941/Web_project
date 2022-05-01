@@ -3,7 +3,7 @@ const props = defineProps({
   projectIcon: String,
   projectTitle: String,
   projectDescription: String,
-  img: String,
+  preImg: String,
   tags: Array,
   themeColor: String,
 })
@@ -19,8 +19,7 @@ const props = defineProps({
     class="pa-md-8 pa-sm-2"
     v-bind="props"
     :elevation="isHovering ? 12 : 2"
-    href="#"
-  >
+    >
     <v-container>
       <v-row>
         <v-col cols="12" md="5">
@@ -34,23 +33,34 @@ const props = defineProps({
 
             <v-card-subtitle ><p class="text-subtitle-1">{{ projectDescription || 'project description'}}</p></v-card-subtitle>
 
-             <div class="px-3 pt-5">
+             <div class="px-3 pt-5 d-none d-md-block">
                 <v-chip class="ma-1" label v-for="(tag, i) in tags" :key="i">{{tag}}</v-chip>
             </div>
 
             <!-- <div class="px-3">
                 <v-chip class="ma-1" label>UX</v-chip>
-                <v-chip class="ma-1" label>Mobile</v-chip>
                 <v-chip class="ma-1" label>iOS</v-chip>
-                <v-chip class="ma-1" label> HCI</v-chip>
             </div> -->
           </div>
         </v-col>
         <v-col cols="12" md="7">
           <v-img
-            :src= "img || 'https://cdn.vuetifyjs.com/images/parallax/material.jpg'"
+            :src= "preImg || 'https://cdn.vuetifyjs.com/images/parallax/material.jpg'"
             cover
-          ></v-img>
+          >
+            <template v-slot:placeholder>
+              <v-row
+                class="fill-height ma-0"
+                align="center"
+                justify="center"
+              >
+                <v-progress-circular
+                  indeterminate
+                  color="grey-lighten-5"
+                ></v-progress-circular>
+              </v-row>
+            </template>
+          </v-img>
         </v-col>
       </v-row>
     </v-container>

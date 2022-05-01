@@ -1,6 +1,18 @@
+<script setup>
+import {ref} from 'vue'
+
+const icons = ref([
+  'mdi-linkedin',
+  'mdi-email',
+  'mdi-github',
+  'mdi-facebook',
+])
+
+</script>
+
 <template>
   <v-container>
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" class="pt-14">
       <v-col class="pa-10" cols="12" md="5" align="center">
         <!-- <v-img
           class="bg-white"
@@ -15,10 +27,10 @@
 
       <v-col cols="12" md="7" class="pa-10">
         <div class="text-grey-darken-3">
-          <h1 class="display-2 font-weight-bold mb-3 text-h4">
-          Hi, I am Carolyn Yu.
-          </h1>
-          <h3>A Product Designer / UX Designer</h3>
+          <p class="display-2 font-weight-bold mb-3 text-h4">
+            Hi, I am Carolyn Yu.
+          </p>
+          <p class="text-h6">A Product Designer / UX Designer</p>
           <br>
           <p>
             I am a UX designer with background in computer science. 
@@ -37,6 +49,17 @@
 
           <p>Feel free to reach out to me on <a href="https://www.linkedin.com/in/carolynyu-owo/" target="_blank" class="text-pink-lighten-3">LinkedIn</a> / <a href="mailto:cyux16@pratt.edu" class="text-pink-lighten-3">Email</a>.</p>
         </div>
+
+        <div>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mr-2 mt-5 text-grey"
+            :icon="icon"
+            variant="text"
+          ></v-btn>
+        </div>
+
         <div class="pt-10">
           <v-btn class="bg-pink-lighten-4 text-grey-darken-4" href="https://carolyn-yu.com/assets/doc/Resume.pdf" target="_blank">View My Resume</v-btn>
         </div>
