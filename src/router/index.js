@@ -28,7 +28,7 @@ const router = createRouter({
         const project = projectMetaData.find(item => item.id === route.params.projectId)
         // console.log(project)
         return project ?? {}
-      }
+      },
     },
   ],
   scrollBehavior(to, from, savedPosition) {

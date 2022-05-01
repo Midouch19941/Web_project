@@ -11,12 +11,16 @@ const props = defineProps({
   id: String,
 })
 
-const currentProjectIndex = projectMetaData.findIndex( project => project.id === props.id)
+// const currentProjectIndex = projectMetaData.findIndex( project => project.id === props.id)
+const currentProjectIndex = ref(null)
+
+currentProjectIndex.value = projectMetaData.findIndex( project => project.id === props.id)
+
 // console.log(projectMetaData.length)
 // console.log(data.value.length)
-const prevProjectId = (currentProjectIndex > 0 ) ? data.value[currentProjectIndex-1].id : 'null'
-const nextProjectId = (currentProjectIndex < data.value.length - 1 ) ? data.value[currentProjectIndex+1].id : 'null'
-// console.log(prevProjectId, nextProjectId)
+const prevProjectId = (currentProjectIndex.value > 0 ) ? data.value[currentProjectIndex.value-1].id : 'null'
+const nextProjectId = (currentProjectIndex.value < data.value.length - 1 ) ? data.value[currentProjectIndex.value+1].id : 'null'
+console.log(prevProjectId, nextProjectId)
 
 const items = ref([
   {
