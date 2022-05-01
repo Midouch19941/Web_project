@@ -57,6 +57,7 @@ const items = computed(() => [
       :src="coverImg || 'https://cdn.vuetifyjs.com/images/parallax/material.jpg'"
       height="400"
       scale="1"
+      transition="false"
       >
         <template v-slot:placeholder>
           <v-row
