@@ -22,17 +22,17 @@ const items = ref([
   {
     text: 'Home',
     disabled: false,
-    href: '/',
+    href: '../',
   },
   {
     text: 'Projects',
     disabled: false,
-    href: '/',
+    href: '../',
   },
   {
     text: props.projectTitle,
     disabled: true,
-    href: props.id,
+    href: '#',
   },
 ])
 
