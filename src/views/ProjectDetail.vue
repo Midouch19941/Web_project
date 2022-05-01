@@ -20,17 +20,17 @@ const items = computed(() => [
   {
     text: 'Home',
     disabled: false,
-    href: '../',
+    to: '/',
   },
   {
     text: 'Projects',
     disabled: false,
-    href: '../',
+    to: '/',
   },
   {
     text: props.projectTitle,
     disabled: true,
-    href: '#',
+    to: '#',
   },
 ])
 
