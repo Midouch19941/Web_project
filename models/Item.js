@@ -6,4 +6,4 @@ const Item = sequelize.define('Item', {
   price: DataTypes.FLOAT
 });
 
-module.exports = Item;
+module.exports = Item; 

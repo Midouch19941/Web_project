@@ -14,7 +14,7 @@
     "jwt",
     "backend"
   ],
-  "author": "Mehdi HASSEN",
+  "author": "Mehdi HASSEN Elhadj Ibrahima Barry",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
