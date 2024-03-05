@@ -20,7 +20,7 @@ exports.getAllRoles = async (req, res) => {
     }
 };
 
-// Create a new role
+// Creation a new role
 exports.createRole = async (req, res) => {
     try {
         const newRole = await Role.create(req.body);
@@ -45,7 +45,7 @@ exports.getRoleById = async (req, res) => {
     }
 };
 
-// Update a role by ID
+// Mise a jour a role by ID
 exports.updateRole = async (req, res) => {
     try {
         const role = await Role.findByPk(req.params.id);
@@ -60,7 +60,7 @@ exports.updateRole = async (req, res) => {
     }
 };
 
-// Delete a role by ID
+// Suppression a role by ID
 exports.deleteRole = async (req, res) => {
     try {
         const role = await Role.findByPk(req.params.id);
