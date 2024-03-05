@@ -27,7 +27,6 @@ const AuthController = {
             email: user.email,
             nom: user.nom,
             prenom: user.prenom
-            
           }
         };
         
