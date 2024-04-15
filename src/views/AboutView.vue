@@ -1,87 +1,89 @@
 <script setup>
-import {ref} from 'vue'
+import { onMounted, ref } from 'vue'
+import { useProductStore } from '../stores/product'
+import { useAuthStore } from '../stores/auth';
 
-const icons = ref([
-  'mdi-linkedin',
-  'mdi-email',
-  'mdi-github',
-  'mdi-facebook',
-])
+const productStore = useProductStore()
+const authStore = useAuthStore()
 
+const addToCart = async (id) => {
+  if (authStore.isAuthenticated) {
+    try {
+
+      const res = await productStore.addToCart(id, 1)
+      authStore.showSnack(res?.message)
+      await productStore.getPaniers()
+    }
+    catch (err) {
+      authStore.showSnack(err?.data.message)
+    }
+  } else {
+    authStore.showSnack('Login to add Item to cart')
+  }
+}
+
+
+onMounted(async () => {
+  await productStore.getPrducts()
+
+})
 </script>
 
 <template>
-  <v-container>
-    <v-row align="center" justify="center" class="pt-14">
-      <v-col class="pa-10" cols="12" md="5" align="center">
-        <!-- <v-img
-          class="bg-white"
-          width="300"
-          :aspect-ratio="1"
-          src="src/assets/avatar.png"
-          cover
-        ></v-img> -->
-        <div class="myavatar mx-auto"></div>
 
-      </v-col>
+  <div style="background-color: rgb(254, 251, 246)">
 
-      <v-col cols="12" md="7" class="pa-10">
-        <div class="text-grey-darken-3">
-          <p class="display-2 font-weight-bold mb-3 text-h4">
-            Hi, I am Carolyn Yu.
-          </p>
-          <p class="text-h6">A Product Designer / UX Designer</p>
-          <br>
-          <p>
-            I am a UX designer with background in computer science. 
-            I am passionate about solving problems and also crafting the next generation of impactful venture. 
-            Currently, I am pursing my Masters in <strong>Information Experience Design </strong>at <strong>Pratt Institute</strong>.
-          </p>
-          <br>
-          <p>
-            In 2021, I won the Red Dot Award (Best of the Best) by designing a bus reservation App for People with visual impairments in Taipei City.
-          </p>
-          <br>
-          <p>
-            In 2020, I published a paper in Proceedings of ACM CHI about reducing the discomfort of walking experience in a VR environment.
-          </p>
-          <br>
 
-          <p>Feel free to reach out to me on <a href="https://www.linkedin.com/in/carolynyu-owo/" target="_blank" class="text-pink-lighten-3">LinkedIn</a> / <a href="mailto:cyux16@pratt.edu" class="text-pink-lighten-3">Email</a>.</p>
-        </div>
+    <v-container class="px-2 py-5">
+      <v-row>
+        <v-col cols="12">
+          <h2 class="pb-1 text-h4 font-weight-medium text-grey-darken-3">NOS PRODUITS</h2>
+          <hr class="shortLine">
+        </v-col>
+      </v-row>
+      <v-row class="py-2">
+        <v-col sm=12 md="3" v-for="(p, id) in productStore.products" :key="id">
+          <v-card class="mx-auto Card" max-width="344">
+            <v-img class="rounded" height="200px"
+              :src="p.cheminImage ? `https://localhost:5000${p.cheminImage}` : 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'"
+              cover></v-img>
 
-        <div>
-          <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mr-2 mt-5 text-grey"
-            :icon="icon"
-            variant="text"
-          ></v-btn>
-        </div>
+            <v-card-title>
+              {{ p.nom }}
+            </v-card-title>
+            <v-card-actions>
+              <v-btn @click="addToCart(p.produitId)" class="bg-primary" rounded>
+                Commandez
+              </v-btn>
+              <v-spacer />
+              <div class="text-h6">${{ p.prix }}</div>
+            </v-card-actions>
 
-        <div class="pt-10">
-          <v-btn class="bg-pink-lighten-4 text-grey-darken-4" href="https://carolyn-yu.com/assets/doc/Resume.pdf" target="_blank">View My Resume</v-btn>
-        </div>
 
-      </v-col>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 
-    </v-row>
-  </v-container>
 </template>
 
 <style scoped>
-.myavatar{
+.myavatar {
   width: 350px;
   height: 350px;
   background-image: url("@/assets/avatar.png");
   background-size: cover;
 }
-@media only screen and (max-width: 600px){
-  .myavatar{
-    width: 300px;
-    height: 300px;
-  }
+
+.shortLine {
+  width: 80px;
+  border: 1px solid #444;
+  margin-left: 0px;
 }
 
+.Card:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s ease-in-out;
+}
 </style>
