@@ -6,7 +6,11 @@ exports.getAllMenus = async (req, res) => {
     res.status(200).json(menus);
   } catch (error) {
     console.error(error);
+<<<<<<< HEAD
     res.status(500).json({ message: 'erreur ' });
+=======
+    res.status(500).json({ message: 'Internal server error' });
+>>>>>>> mehdi
   }
 };
 
@@ -16,7 +20,11 @@ exports.createMenu = async (req, res) => {
     res.status(201).json(newMenu);
   } catch (error) {
     console.error(error);
+<<<<<<< HEAD
     res.status(500).json({ message: 'Internal server erreur ' });
+=======
+    res.status(500).json({ message: 'Internal server error' });
+>>>>>>> mehdi
   }
 };
 

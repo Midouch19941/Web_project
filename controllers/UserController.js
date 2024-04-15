@@ -16,7 +16,11 @@ exports.getAllUsers = async (req, res) => {
         res.status(200).json(users);
     } catch (error) {
         console.error(error);
+<<<<<<< HEAD
         res.status(500).json({ message: ' server error' });
+=======
+        res.status(500).json({ message: 'Internal server error' });
+>>>>>>> mehdi
     }
 };
 
@@ -33,7 +37,11 @@ exports.createUser = async (req, res) => {
         res.status(201).json(newUser);
     } catch (error) {
         console.error(error);
+<<<<<<< HEAD
         res.status(500).json({ message: ' server error' });
+=======
+        res.status(500).json({ message: 'Internal server error' });
+>>>>>>> mehdi
     }
 };
 

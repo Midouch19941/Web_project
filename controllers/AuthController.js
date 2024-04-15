@@ -27,6 +27,10 @@ const AuthController = {
             email: user.email,
             nom: user.nom,
             prenom: user.prenom
+<<<<<<< HEAD
+=======
+            // Add more user details as needed
+>>>>>>> mehdi
           }
         };
         
@@ -45,4 +49,8 @@ const AuthController = {
   }
 };
 
+<<<<<<< HEAD
 module.exports = AuthController;
+=======
+module.exports = AuthController;
+>>>>>>> mehdi

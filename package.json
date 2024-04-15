@@ -10,20 +10,35 @@
     "node",
     "express",
     "sequelize",
+<<<<<<< HEAD
     "mysql",
     "jwt",
     "backend"
   ],
   "author": "Mehdi HASSEN Elhadj Ibrahima Barry",
+=======
+    "mysql2",
+    "jwt",
+    "backend"
+  ],
+  "author": "Mehdi HASSEN",
+>>>>>>> mehdi
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.19.0",
+<<<<<<< HEAD
+=======
+    "cors": "^2.8.5",
+>>>>>>> mehdi
     "dotenv": "^16.4.4",
     "express": "^4.17.1",
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^8.5.1",
+<<<<<<< HEAD
     "mysql": "^2.18.1",
+=======
+>>>>>>> mehdi
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.2"
   }
