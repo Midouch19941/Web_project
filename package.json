@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "my-beta-app",
   "version": "0.0.0",
   "scripts": {
@@ -25,5 +26,34 @@
     "vite": "^2.9.5",
     "vue-cli-plugin-vuetify": "~2.4.8",
     "vuetify-loader": "^2.0.0-alpha.0"
+=======
+  "name": "projectmhedi",
+  "version": "1.0.0",
+  "description": "A Node.js backend project for a web application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "sequelize",
+    "mysql2",
+    "jwt",
+    "backend"
+  ],
+  "author": "Mehdi HASSEN",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "express": "^4.17.1",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.2"
+>>>>>>> 76788347f33dfe2a65fb084aa034c02db5eb1fe9
   }
 }
